@@ -1,0 +1,62 @@
+.Error {
+  padding-top: 120px;
+}
+
+.errorContent {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+}
+.errorInfo {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+}
+.errorImage img {
+  width: 200px;
+  height: 200px;
+}
+
+.errorInfo a {
+  background-color: blue;
+  padding: 12px;
+  border-radius: 8px;
+}
+.errorInfo p {
+  font-size: 20px;
+  font-weight: 600;
+}
+.errorInfo a:hover {
+  background-color: #a18a68;
+  color: white;
+}
+@media screen and (max-width: 575.98px) {
+  .errorInfo a {
+    background-color: blue;
+    padding: 8px;
+    border-radius: 8px;
+    font-size: 12px;
+  }
+  .errorInfo p {
+    font-size: 16px;
+    font-weight: 600;
+  }
+}
+
+/* `md` applies to small devices (landscape phones, less than 768px) */
+@media screen and (max-width: 767.98px) {
+  .errorInfo a {
+    background-color: blue;
+    padding: 10px;
+    border-radius: 8px;
+    font-size: 14px;
+  }
+  .errorInfo p {
+    font-size: 18px;
+    font-weight: 600;
+  }
+}

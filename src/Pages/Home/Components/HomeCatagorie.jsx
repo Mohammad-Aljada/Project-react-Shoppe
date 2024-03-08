@@ -2,7 +2,7 @@ import axios from "axios";
 import { useEffect, useState } from "react"
 import { Navigation, A11y } from 'swiper/modules';
 
-import './Home.css'; // Import CSS file for custom styles
+import style from'./Home.module.css'; // Import CSS file for custom styles
 import { Swiper, SwiperSlide } from 'swiper/react';
 // Import Swiper styles
 import 'swiper/css';
@@ -42,26 +42,24 @@ export default function HomeCatagorie() {
   return (
     <>
    {error?? <p className="error">{error}</p>}
-    <section  className="Category">
+    <section  className={style.Category}>
     <div className="container">
-      <h2 className="title">categories</h2>
+      <h2 className={style.title}>categories</h2>
     <Swiper
           modules={[Navigation , A11y]}
       spaceBetween={50}
       slidesPerView={5}
-      onSwiper={ () =>  console.log("swiper")}
-      onSlideChange={() => 
-        console.log("Slide change")
-      }
+      onSwiper={()=>console.log()}
+      onSlideChange = {()=>console.log()}
       navigation={true}
     >
     {
       (catagories.length>0)? catagories.map(catagory => 
         
           <div className="col-lg-6 col-md-4 col-sm-6"  key={catagory.id}>
-             <SwiperSlide className="swiperSlide" key={catagory._id}><NavLink to="" className="swiperSlide">
-             <img className="circular-image" src={catagory.image.secure_url}alt="slide image" />
-             <span className="cat-title">{catagory.name}</span></NavLink>
+             <SwiperSlide className={style.swiperSlide} key={catagory._id}><NavLink to={`/products/category/${catagory.id}`} className={style.swiperSlide}>
+             <img className={style.circularImage} src={catagory.image.secure_url}alt="slide image" />
+             <span className={style.catTitle}>{catagory.name}</span></NavLink>
              </SwiperSlide>
               </div>
         ):<h2>empty data</h2> }

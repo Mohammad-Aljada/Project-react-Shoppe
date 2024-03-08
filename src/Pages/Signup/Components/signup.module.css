@@ -1,0 +1,130 @@
+.Signup {
+  padding-top: 120px;
+}
+.signupContent {
+  display: flex;
+  border-radius: 6px;
+  padding: 20px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+  text-align: center;
+  gap: 20px;
+}
+.signupStart,
+.signupFinal {
+  width: calc(100% / 2);
+}
+.signupContent .signupStart {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  background-color: var(--primary-color);
+  color: white;
+  padding: 20px;
+}
+.signupStart .signupInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+.signupInfo h2 {
+  font-size: 24px;
+  font-weight: 600;
+}
+.signupInfo p {
+  font-size: 20px;
+  font-weight: 600;
+}
+
+.signupStart .signupStartLink {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  align-items: center;
+}
+.signupStartLink span {
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--secondary-color);
+  text-decoration: underline;
+}
+.signupStartLink a {
+  border: 1px solid black;
+  padding: 10px;
+  border-radius: 6px;
+  font-size: 16px;
+  background-color: black;
+  color: white;
+}
+
+.signupFinal {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  padding: 20px;
+}
+.signupFinal form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+.signupFinal form label {
+  font-size: 16px;
+  font-weight: 600;
+}
+.signupFinal form button {
+  background-color: var(--secondary-color);
+  border: none;
+  border-radius: 6px;
+  padding: 10px;
+  color: white;
+}
+
+@media screen and (max-width: 575.98px) {
+  .signupInfo h2 {
+    font-size: 16px;
+    font-weight: 600;
+  }
+  .signupInfo p {
+    font-size: 14px;
+    font-weight: 600;
+  }
+
+  .signupFinal form label {
+    font-size: 14px;
+    font-weight: 600;
+  }
+  .signupFinal form input {
+    font-size: 14px;
+    width: 100%;
+  }
+  .signupFinal h1 {
+    font-size: 24px;
+  }
+}
+
+/* `md` applies to small devices (landscape phones, less than 768px) */
+@media screen and (max-width: 767.98px) {
+  .signupInfo h2 {
+    font-size: 18px;
+    font-weight: 600;
+  }
+  .signupInfo p {
+    font-size: 16px;
+    font-weight: 600;
+  }
+}
+
+/*  `lg` applies to medium devices (tablets, less than 992px) */
+@media screen and (max-width: 991.98px) {
+  .signupContent {
+    flex-direction: column;
+  }
+  .signupStart,
+  .signupFinal {
+    width: 100%;
+  }
+}
