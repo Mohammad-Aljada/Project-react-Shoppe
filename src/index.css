@@ -1,6 +1,7 @@
 @import url("https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap");
 body {
   font-family: "DM Sans", sans-serif;
+    background-color: #e2ddd5; 
 }
 :root {
   --primary-color: #a18a68;
@@ -33,3 +34,10 @@ ul {
 .card-link+.card-link{
   margin-left: 0;
 }
+button{
+  border: none;
+  background-color: transparent;
+}
+
+
+ 

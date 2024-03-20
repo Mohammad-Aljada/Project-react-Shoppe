@@ -39,13 +39,38 @@ header .navbar {
   border-bottom: 2px solid var(--primary-color);
   font-weight: 800;
 }
+.cart,
+.profile {
+  display: flex !important;
+  gap: 10px;
+}
+.nav-user {
+  display: flex;
+  gap: 20px;
+}
+.cart {
+  position: relative;
+}
+.countItems {
+  position: absolute;
+  bottom: 13px;
+  left: 34px;
+  font-size: 14px;
+  color: black;
+  background-color: rgb(225, 71, 71);
+  border-radius: 50%;
+  width: 24px;
+  height: 24px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 @media screen and (max-width: 575.98px) {
   header.navbar {
     padding: 10px;
   }
   .navbar .nav-link {
     display: flex;
-    flex-direction: column;
     gap: 10px;
     align-items: stretch;
   }
@@ -77,7 +102,6 @@ header .navbar {
   }
   .navbar .nav-link {
     display: flex;
-    flex-direction: column;
     gap: 10px;
     align-items: stretch;
   }
@@ -92,6 +116,10 @@ header .navbar {
     display: flex;
     gap: 10px;
   }
+  img {
+    width: 20px;
+    height: 20px;
+  }
 }
 
 /*  `lg` applies to medium devices (tablets, less than 992px) */
@@ -99,9 +127,15 @@ header .navbar {
   header.navbar {
     padding: 10px;
   }
+  .cart {
+    display: flex;
+  }
+  img {
+    width: 20px;
+    height: 20px;
+  }
   .navbar .nav-link {
     display: flex;
-    flex-direction: column;
     gap: 10px;
     align-items: stretch;
   }

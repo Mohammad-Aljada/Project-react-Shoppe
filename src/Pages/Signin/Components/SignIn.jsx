@@ -1,11 +1,13 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import style from "./signin.module.css";
 import axios from "axios";
 import { object, string } from "yup";
 import { NavLink, useNavigate } from "react-router-dom";
 import { Slide, toast } from "react-toastify";
 import Loader from "../../../Components/Loader/Loader";
+import { UserContext } from "../../../context/User";
 export default function SignIn() {
+  const {setUserToken} = useContext(UserContext);
   const navigate = useNavigate();
   const [loader, setLoader] = useState(false);
 
@@ -55,7 +57,6 @@ export default function SignIn() {
           email: "",
           password: "",
         });
-        localStorage.setItem("userToken" , data.token);
         if (data.message == "success") {
           toast.success("Login Is successfully!", {
             position: "top-right",
@@ -68,6 +69,8 @@ export default function SignIn() {
             theme: "light",
             transition: Slide,
           });
+          localStorage.setItem("userToken", data.token);
+          setUserToken(data.token);
           navigate("/");
         }
       } catch (error) {
@@ -98,7 +101,7 @@ export default function SignIn() {
                 <p>Sign in for to amazing ecommerce website</p>
               </div>
               <div className={style.signinStartLink}>
-                <span>Dont Have a Account?</span>
+                <span>don&apos;t Have a Account?</span>
                 <NavLink to="/signup"> Sign up </NavLink>
               </div>
             </div>
@@ -106,18 +109,20 @@ export default function SignIn() {
             <div className={style.signinFinal}>
               <h1>SIGN IN </h1>
               <form onSubmit={handleSubmit}>
-                <label>Email</label>
+                <label htmlFor="email">Email</label>
                 <input
                   type="email"
                   value={user.email}
+                  id="email"
                   name="email"
                   onChange={handleChange}
                 />
                 {errors.email && <div className="error">{errors.email}</div>}
 
-                <label>Password</label>
+                <label htmlFor="password">Password</label>
                 <input
                   type="password"
+                  id="password"
                   value={user.password}
                   name="password"
                   onChange={handleChange}
@@ -125,6 +130,8 @@ export default function SignIn() {
                 {errors.password && (
                   <div className="error">{errors.password}</div>
                 )}
+
+                <NavLink to="/sendcode" className="text-primary align-self-end">Forget Password?</NavLink>
 
                 <button type="submit" disabled={loader ? "disabled" : null}>
                   {!loader ? "Login" : <Loader />}

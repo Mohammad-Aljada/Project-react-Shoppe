@@ -11,9 +11,17 @@
   justify-content: space-between;
   flex-wrap: wrap;
 }
+.product {
+  transform: scaleX(1);
+  transition: transform 3s ease-in-out;
+}
+.product:hover {
+  transform: scale(1.1);
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+}
 .CardImage {
-  width: 200px;
-  height: 200px;
+  width: 150px;
+  height: 150px;
   border-radius: 6px;
   filter: brightness(85%);
 }
@@ -23,7 +31,7 @@
   gap: 20px;
 }
 .cartTitle {
-  font-size: 16px;
+  font-size: 12px;
   font-weight: 600;
 }
 .cartDesc {
@@ -89,4 +97,10 @@
   .Catproduct {
     justify-content: center;
   }
+}
+
+.rows {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
 }

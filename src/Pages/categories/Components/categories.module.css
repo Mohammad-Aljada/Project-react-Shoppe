@@ -1,0 +1,35 @@
+.Categorys {
+  padding-top: 120px;
+}
+.title {
+  text-align: center;
+  padding-bottom: 30px;
+}
+.category {
+  display: flex !important;
+  gap: 30px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.categLink {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  align-items: center;
+  background-color: #c7c0b5;
+  padding: 20px;
+  border-radius: 6px;
+}
+.categLink:hover {
+  box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.2);
+}
+.categLink img {
+  width: 120px;
+  height: 120px;
+}
+.catTitle {
+  font-size: 14px;
+  font-weight: 600;
+  text-align: center;
+}

@@ -5,7 +5,9 @@ export default function Root() {
   return (
     <>
     <Navbar/>
-    <Outlet/>
+    {/* <main style={{marginTop: '120px'}}> */}
+      <Outlet/>
+    {/* </main> */}
     </>
   )
 }

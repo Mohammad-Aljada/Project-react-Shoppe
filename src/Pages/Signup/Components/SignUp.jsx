@@ -130,10 +130,11 @@ export default function SignUp() {
             <div className={style.signupFinal}>
               <h1>SIGN UP </h1>
               <form onSubmit={handleSubmit}>
-                <label>Username</label>
+                <label htmlFor="userName">Username</label>
                 <input
                   type="text"
                   value={user.userName}
+                  id="userName"
                   name="userName"
                   onChange={handleChange}
                 />
@@ -141,19 +142,21 @@ export default function SignUp() {
                   <div className="error">{errors.userName}</div>
                 )}
 
-                <label>Email</label>
+                <label htmlFor="email">Email</label>
                 <input
                   type="email"
                   value={user.email}
+                  id="email"
                   name="email"
                   onChange={handleChange}
                 />
                 {errors.email && <div className="error">{errors.email}</div>}
 
-                <label>Password</label>
+                <label htmlFor="password">Password</label>
                 <input
                   type="password"
                   value={user.password}
+                  id="password"
                   name="password"
                   onChange={handleChange}
                 />

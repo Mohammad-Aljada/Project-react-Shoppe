@@ -1,131 +1,136 @@
 .Signin {
-    padding-top: 120px;
-  }
-  .signinContent {
-    display: flex;
-    border-radius: 6px;
-    padding: 20px;
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
-    text-align: center;
-    gap: 20px;
-  }
-  .signinStart,
-  .signinFinal {
-    width: calc(100% / 2);
-  }
-  .signinContent .signinStart {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    gap: 20px;
-    background-color: var(--primary-color);
-    color: white;
-    padding: 20px;
-  }
-  .signinStart .signinInfo {
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-  }
+  padding-top: 190px;
+}
+.signinContent {
+  display: flex;
+  padding: 20px;
+  text-align: center;
+  gap: 20px;
+  background: rgba(255, 255, 255, 0.22);
+  border-radius: 16px;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(1.9px);
+  -webkit-backdrop-filter: blur(1.9px);
+  border: 1px solid rgba(255, 255, 255, 0.51);
+}
+.signinStart,
+.signinFinal {
+  width: calc(100% / 2);
+}
+.signinContent .signinStart {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  background-color: var(--primary-color);
+  color: white;
+  padding: 20px;
+}
+.signinStart .signinInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+.signinInfo h2 {
+  font-size: 24px;
+  font-weight: 600;
+}
+.signinInfo p {
+  font-size: 20px;
+  font-weight: 600;
+}
+
+.signinStart .signinStartLink {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  align-items: center;
+}
+.signinStartLink span {
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--secondary-color);
+  text-decoration: underline;
+}
+.signinStartLink a {
+  border: 1px solid black;
+  padding: 10px;
+  border-radius: 6px;
+  font-size: 16px;
+  background-color: black;
+  color: white;
+}
+
+.signinFinal {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 20px;
+  padding: 20px;
+}
+.signinFinal form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+.signinFinal form label {
+  font-size: 16px;
+  font-weight: 600;
+}
+.signinFinal form button {
+  background-color: var(--secondary-color);
+  border: none;
+  border-radius: 6px;
+  padding: 10px;
+  color: white;
+}
+.signinFinal form input {
+  border-radius: 6px;
+}
+
+@media screen and (max-width: 575.98px) {
   .signinInfo h2 {
-    font-size: 24px;
+    font-size: 16px;
     font-weight: 600;
   }
   .signinInfo p {
-    font-size: 20px;
+    font-size: 14px;
     font-weight: 600;
-  }
-  
-  .signinStart .signinStartLink {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    align-items: center;
-  }
-  .signinStartLink span {
-    font-size: 16px;
-    font-weight: 600;
-    color: var(--secondary-color);
-    text-decoration: underline;
-  }
-  .signinStartLink a {
-    border: 1px solid black;
-    padding: 10px;
-    border-radius: 6px;
-    font-size: 16px;
-    background-color: black;
-    color: white;
-  }
-  
-  .signinFinal {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    gap: 20px;
-    padding: 20px;
-  }
-  .signinFinal form {
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
-  }
-  .signinFinal form label {
-    font-size: 16px;
-    font-weight: 600;
-  }
-  .signinFinal form button {
-    background-color: var(--secondary-color);
-    border: none;
-    border-radius: 6px;
-    padding: 10px;
-    color: white;
   }
 
-  @media screen and (max-width: 575.98px) {
-    .signinInfo h2 {
-      font-size: 16px;
-      font-weight: 600;
-    }
-    .signinInfo p {
-      font-size: 14px;
-      font-weight: 600;
-    }
-  
-    .signinFinal form label {
-      font-size: 14px;
-      font-weight: 600;
-    }
-    .signinFinal form input {
-      font-size: 14px;
-      width: 100%;
-    }
-    .signinFinal h1 {
-      font-size: 24px;
-    }
+  .signinFinal form label {
+    font-size: 14px;
+    font-weight: 600;
   }
-  
-  /* `md` applies to small devices (landscape phones, less than 768px) */
-  @media screen and (max-width: 767.98px) {
-    .signinInfo h2 {
-      font-size: 18px;
-      font-weight: 600;
-    }
-    .signinInfo p {
-      font-size: 16px;
-      font-weight: 600;
-    }
+  .signinFinal form input {
+    font-size: 14px;
+    width: 100%;
   }
-  
-  /*  `lg` applies to medium devices (tablets, less than 992px) */
-  @media screen and (max-width: 991.98px) {
-    .signinContent {
-      flex-direction: column;
-    }
-    .signinStart,
-    .signinFinal {
-      width: 100%;
-    }
+  .signinFinal h1 {
+    font-size: 24px;
   }
-  
+}
+
+/* `md` applies to small devices (landscape phones, less than 768px) */
+@media screen and (max-width: 767.98px) {
+  .signinInfo h2 {
+    font-size: 18px;
+    font-weight: 600;
+  }
+  .signinInfo p {
+    font-size: 16px;
+    font-weight: 600;
+  }
+}
+
+/*  `lg` applies to medium devices (tablets, less than 992px) */
+@media screen and (max-width: 991.98px) {
+  .signinContent {
+    flex-direction: column;
+  }
+  .signinStart,
+  .signinFinal {
+    width: 100%;
+  }
+}
