@@ -4,12 +4,14 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import Loader from "../../../Components/Loader/Loader";
 import { Slide, toast } from "react-toastify";
+import { useCart } from "../../../CustomHook/UseCart";
+
 export default function CategoryProducts() {
   const { id } = useParams();
   const [Products, setProducts] = useState({});
   const [loader, setLoader] = useState(true);
   const [error, setError] = useState("");
-
+  const [cart, setCart] = useCart();
   // eslint-disable-next-line react-hooks/exhaustive-deps
   const controller = new AbortController();
   const signal = controller.signal;
@@ -38,7 +40,7 @@ export default function CategoryProducts() {
     return () => {
       controller.abort();
     };
-  }, [controller]);
+  }, [controller, cart]);
 
   if (loader) {
     return <Loader />;
@@ -46,6 +48,19 @@ export default function CategoryProducts() {
 
   const AddToCart = async (productId) => {
     const token = localStorage.getItem("userToken");
+    if (!token) {
+      toast.error("plz  login first", {
+        position: "bottom-center",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "dark",
+        transition: Slide,
+      });
+    }
     try {
       const { data } = await axios.post(
         `${import.meta.env.VITE_API_URL}/cart`,
@@ -70,22 +85,11 @@ export default function CategoryProducts() {
           theme: "light",
           transition: Slide,
         });
+        setCart(cart + 1);
       }
     } catch (error) {
-      if (error.response.data.message == "product already exists") {
+      if (error.response.data.message === "product already exists") {
         toast.error(error.response.data.message, {
-          position: "bottom-center",
-          autoClose: 3000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-          theme: "dark",
-          transition: Slide,
-        });
-      } else {
-        toast.error("plz first  login", {
           position: "bottom-center",
           autoClose: 3000,
           hideProgressBar: false,

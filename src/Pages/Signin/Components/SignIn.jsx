@@ -72,6 +72,7 @@ export default function SignIn() {
           localStorage.setItem("userToken", data.token);
           setUserToken(data.token);
           navigate("/");
+          
         }
       } catch (error) {
         toast.error(error.response.data.message, {

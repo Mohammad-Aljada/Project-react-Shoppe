@@ -16,6 +16,11 @@ import ForgetPassword from "./Pages/ForgetPassword/Components/ForgetPassword";
 import Categories from "./Pages/categories/Components/Categories";
 import Product from "./Pages/Product/Components/Product";
 import CartContextProvider from "./context/Cart";
+import Order from "./Pages/Order/Components/Order";
+import Profile from "./Pages/Profile/Components/Profile";
+import InfoUser from "./Pages/Profile/Components/InfoUser";
+import ContactUs from "./Pages/Profile/Components/ContactUs";
+import UserOrders from "./Pages/Profile/Components/UserOrders";
 
 const router = createBrowserRouter([
   {
@@ -23,49 +28,62 @@ const router = createBrowserRouter([
     element: <Root />,
     children: [
       {
-        index:true,
+        index: true,
         element: <Home />,
       },
       {
-        path: "signin",
+        path: "/signin",
         element: <SignIn />,
       },
       {
-        path: "signup",
+        path: "/signup",
         element: <SignUp />,
       },
       {
-        path: "sendcode",
+        path: "/sendcode",
         element: <SendCode />,
       },
       {
-        path: "forgetpassword",
+        path: "/forgetpassword",
         element: <ForgetPassword />,
       },
 
       {
-        path: "Procategory/:id",
+        path: "/Procategory/:id",
         element: <CategoryProducts />,
       },
       {
-        path: "products",
+        path: "/products",
         element: <Products />,
       },
       {
-        path: "product/:id",
+        path: "/product/:id",
         element: <Product />,
       },
       {
-        path: "categories",
+        path: "/categories",
         element: <Categories />,
       },
       {
-        path: "cart",
+        path: "/cart",
         element: (
           <ProtectedRouter>
             <Cart />
           </ProtectedRouter>
         ),
+      },
+      {
+        path: "/order",
+        element: <Order />,
+      },
+      {
+        path:"/profile",
+        element: <Profile />,
+        children: [
+          { path: "/profile/userinfo", element: <InfoUser /> },
+          { path: "/profile/contactus", element: <ContactUs /> },
+          { path: "/profile/orders", element: <UserOrders /> },
+        ],
       },
       {
         path: "*",
@@ -77,12 +95,12 @@ const router = createBrowserRouter([
 export default function App() {
   return (
     <> 
-    <ToastContainer />
-     <CartContextProvider>
+    <CartContextProvider>
+      <ToastContainer />
         <UserContextProvaider>
           <RouterProvider router={router} />
         </UserContextProvaider>
-       </CartContextProvider> 
+      </CartContextProvider>
     </>
   );
 }

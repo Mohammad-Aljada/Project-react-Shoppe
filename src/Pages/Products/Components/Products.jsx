@@ -6,13 +6,19 @@ import Loader from "../../../Components/Loader/Loader";
 import { Slide, toast } from "react-toastify";
 import PaginationComp from "../../../Components/Pagination/PaginationComp";
 
+import Filter from "../../../Components/Filter/Filter";
+import { Rating } from "@mui/material";
+import { useCart } from "../../../CustomHook/UseCart";
+
 export default function Products() {
+  const [value, setValue] = useState(0);
   const [Products, setProducts] = useState({});
   const [loader, setLoader] = useState(true);
   const [error, setError] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState(0);
   const limit = 4;
+  const [cart, setCart] = useCart();
 
   // eslint-disable-next-line react-hooks/exhaustive-deps
   const getProducts = async () => {
@@ -25,7 +31,6 @@ export default function Products() {
       setProducts(data.products);
       setError("");
       const numberofpages = data.total / limit;
-
       setTotalPages(numberofpages);
     } catch (error) {
       setError("error loading products data");
@@ -36,7 +41,8 @@ export default function Products() {
 
   useEffect(() => {
     getProducts();
-  }, [currentPage]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [cart, value]);
 
   const handlePageChange = (pageNumber) => {
     setCurrentPage(pageNumber);
@@ -48,6 +54,19 @@ export default function Products() {
 
   const AddToCart = async (productId) => {
     const token = localStorage.getItem("userToken");
+    if (!token) {
+      toast.error("plz  login first", {
+        position: "bottom-center",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "dark",
+        transition: Slide,
+      });
+    }
     try {
       const { data } = await axios.post(
         `${import.meta.env.VITE_API_URL}/cart`,
@@ -60,6 +79,7 @@ export default function Products() {
           },
         }
       );
+
       if (data.message == "success") {
         toast.success("Add to cart Is successfully!", {
           position: "top-right",
@@ -72,22 +92,11 @@ export default function Products() {
           theme: "light",
           transition: Slide,
         });
+        setCart(cart + 1);
       }
     } catch (error) {
-      if (error.response.data.message == "product already exists") {
+      if (error.response.data.message === "product already exists") {
         toast.error(error.response.data.message, {
-          position: "bottom-center",
-          autoClose: 3000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-          theme: "dark",
-          transition: Slide,
-        });
-      } else {
-        toast.error("plz first  login", {
           position: "bottom-center",
           autoClose: 3000,
           hideProgressBar: false,
@@ -106,6 +115,12 @@ export default function Products() {
     <>
       {error ?? <p className="error">{error}</p>}
       <section className={style.products}>
+        <Filter
+          setProducts={setProducts}
+          currentpage={currentPage}
+          setTotalpage={setTotalPages}
+          setCurrentPage={setCurrentPage}
+        />
         <div className="container">
           <h1 className={style.titlePro}>Products</h1>
           <div className={style.rows}>
@@ -126,6 +141,15 @@ export default function Products() {
                         <h5 className={`cart-text ${style.cartTitle}`}>
                           {product.name}
                         </h5>
+                      </div>
+                      <div className={`card-body ${style.rating}`}>
+                        <Rating
+                          name="simple-controlled"
+                          value={product.avgRating}
+                          onChange={(event, newValue) => {
+                            setValue(newValue);
+                          }}
+                        />
                       </div>
 
                       <span className={`card-text ${style.price} `}>

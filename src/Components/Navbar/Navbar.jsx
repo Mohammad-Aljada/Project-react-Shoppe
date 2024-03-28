@@ -2,11 +2,12 @@ import { NavLink } from "react-router-dom";
 import "./Navbar.css";
 import { useContext } from "react";
 import { UserContext } from "../../context/User";
-import { CartContext } from "../../context/Cart";
+import { useCart } from "../../CustomHook/UseCart";
+
 
 export default function Navbar() {
   const { userName, setUserToken, setUserName } = useContext(UserContext);
-  const cart = useContext(CartContext);
+  const cart = useCart();
 
   const Logout = () => {
     localStorage.removeItem("userToken");
@@ -20,7 +21,7 @@ export default function Navbar() {
           <nav className="navbar navbar-expand-lg bg-light shadow p-3 mb-5 bg-body rounded ">
             <div className="container-fluid nav">
               <NavLink className="navbar-brand " to="/">
-                <img className="logo" src="SHOPPE.svg" alt="Shoppe Logo" />
+                <img className="logo" src="/logo.svg" alt="Shoppe Logo" />
               </NavLink>
               <button
                 className="navbar-toggler"
@@ -60,7 +61,7 @@ export default function Navbar() {
                     <>
                       <li className="nav-item">
                         <NavLink className="nav-link cart" to="/cart">
-                          <img src="cart.svg" alt="cart icone" />
+                          <img src="/cart.svg" alt="cart icone" />
                           <span className="cart">
                             Cart <span className="countItems">{cart}</span>
                           </span>
@@ -78,16 +79,18 @@ export default function Navbar() {
                         <ul className="dropdown-menu">
                           <li className="nav-item">
                             <NavLink className="nav-link profile" to="/profile">
-                              <img src="user.svg" alt="user icone" />
+                              <img src="/user.svg" alt="user icone" />
                               Profile
                             </NavLink>
                           </li>
 
-                          <li>
-                            <hr className="dropdown-divider" />
-                          </li>
+                          <li></li>
                           <li className="nav-item">
-                            <button className="text-danger" onClick={Logout}>
+                            <button
+                              className="text-danger logout"
+                              onClick={Logout}
+                            >
+                              <img src="/signout.svg" alt="logout icone" />
                               Logout
                             </button>
                           </li>
@@ -108,12 +111,14 @@ export default function Navbar() {
                         </button>
                         <ul className="dropdown-menu">
                           <li className="nav-item">
-                            <NavLink className="nav-link" to="/signin">
+                            <NavLink className="nav-link signin" to="/signin">
+                              <img src="/signin.svg" alt="login icone" />
                               Signin
                             </NavLink>
                           </li>
                           <li className="nav-item">
-                            <NavLink className="nav-link" to="/signup">
+                            <NavLink className="nav-link signup" to="/signup">
+                              <img src="/signup.svg" alt="register icone" />
                               Signup
                             </NavLink>
                           </li>

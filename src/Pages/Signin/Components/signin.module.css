@@ -1,5 +1,6 @@
 .Signin {
   padding-top: 190px;
+  padding-bottom: 50px;
 }
 .signinContent {
   display: flex;
@@ -87,6 +88,11 @@
 }
 .signinFinal form input {
   border-radius: 6px;
+  border: none;
+  padding: 8px;
+  font-size: 16px;
+  font-weight: 600;
+  box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.2);
 }
 
 @media screen and (max-width: 575.98px) {
@@ -104,7 +110,7 @@
     font-weight: 600;
   }
   .signinFinal form input {
-    font-size: 14px;
+    font-size: 12px;
     width: 100%;
   }
   .signinFinal h1 {
@@ -121,6 +127,9 @@
   .signinInfo p {
     font-size: 16px;
     font-weight: 600;
+  }
+  .signinFinal form input {
+    font-size: 14px;
   }
 }
 

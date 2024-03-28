@@ -47,7 +47,7 @@ export default function Catagories() {
                     <img
                       className={style.circularImage}
                       src={catagory.image.secure_url}
-                      alt="slide image"
+                      alt={catagory.name}
                     />
                     <span className={style.catTitle}>{catagory.name}</span>
                   </NavLink>

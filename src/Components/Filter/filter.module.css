@@ -1,0 +1,10 @@
+.active {
+    border-bottom: 2px solid var(--primary-color);
+    font-weight: 800;
+  }
+  
+  img {
+    width: 18px;
+    height: 18px;
+  }
+  

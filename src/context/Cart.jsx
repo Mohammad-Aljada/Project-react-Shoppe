@@ -1,5 +1,5 @@
 import axios from "axios";
-import { createContext, useContext, useEffect, useState } from "react";
+import { createContext, useEffect, useState } from "react";
 
 export const CartContext = createContext(null);
 
@@ -15,30 +15,23 @@ const CartContextProvider = ({ children }) => {
           Authorization: `Tariq__${userToken}`,
         },
       });
-      setCart(data.count);
+    setCart(data.count);
     }
   };
 
   useEffect(() => {
     getCart();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
+  
+
   return (
-    <CartContext.Provider value={[cart,setCart ]}>
+
+    <CartContext.Provider value={[cart,  setCart]}>
       {children}
     </CartContext.Provider>
   );
 };
 
 export default CartContextProvider;
-
-
-// eslint-disable-next-line react-refresh/only-export-components
-export const useCart = () => {
-  const context = useContext(CartContext);
-
-  if (context === null) {
-    throw new Error("useCart must be used within a CartProvider");
-  }
-  return context;
-}

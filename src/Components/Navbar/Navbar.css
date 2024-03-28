@@ -40,9 +40,13 @@ header .navbar {
   font-weight: 800;
 }
 .cart,
-.profile {
+.profile,
+.logout,
+.signin,
+.signup {
   display: flex !important;
   gap: 10px;
+  align-items: center;
 }
 .nav-user {
   display: flex;

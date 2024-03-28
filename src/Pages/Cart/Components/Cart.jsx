@@ -2,17 +2,18 @@ import { useEffect, useState } from "react";
 import style from "./cart.module.css";
 import axios from "axios";
 import Loader from "../../../Components/Loader/Loader";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import { Slide, toast } from "react-toastify";
-import { useCart } from "../../../context/Cart";
+import { useCart } from "../../../CustomHook/UseCart";
 
 export default function Cart() {
+  const navigate = useNavigate();
   const [Products, setProducts] = useState({});
   const [loader, setLoader] = useState(true);
   const [error, setError] = useState("");
   const token = localStorage.getItem("userToken");
   const [actions, setAction] = useState(-1);
-  const {cart , setCart} = useCart();
+  const [cart, setCart] = useCart();
   // eslint-disable-next-line react-hooks/exhaustive-deps
   const getProducts = async () => {
     try {
@@ -21,7 +22,6 @@ export default function Cart() {
           Authorization: `Tariq__${token}`,
         },
       });
-      console.log(data.products);
       setProducts(data.products);
       setError("");
     } catch (error) {
@@ -33,7 +33,7 @@ export default function Cart() {
 
   useEffect(() => {
     getProducts();
-  }, [actions , cart]);
+  }, [actions, cart]);
 
   if (loader) {
     return <Loader />;
@@ -52,7 +52,8 @@ export default function Cart() {
               },
             }
           );
-          setAction((actions) => actions + 1);
+          setAction(actions + 1);
+          
           break;
         case "decrease":
           await axios.patch(
@@ -64,8 +65,7 @@ export default function Cart() {
               },
             }
           );
-          setAction((actions) => actions - 1);
-
+          setAction(actions - 1);
           break;
         case "remove":
           // eslint-disable-next-line no-case-declarations
@@ -91,7 +91,7 @@ export default function Cart() {
               transition: Slide,
             });
             setAction(Products);
-            setCart(cart-1);
+            setCart(cart - 1);
           }
           break;
         default:
@@ -101,7 +101,75 @@ export default function Cart() {
       console.error(`Error ${action}ing item:`, error);
     }
   };
+  const handleClear = async () => {
+    try {
+      const { data } = await axios.patch(
+        `${import.meta.env.VITE_API_URL}/cart/clear`,
+        null,
+        {
+          headers: {
+            Authorization: `Tariq__${token}`,
+          },
+        }
+      );
+      if (data.message == "success") {
+        toast.success("claer cart is successfully!", {
+          position: "top-right",
+          autoClose: 3000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "light",
+          transition: Slide,
+        });
+        setAction(Products);
+        setCart(0);
+      } else {
+        toast.error("cart is clearing and empty", {
+          position: "top-right",
+          autoClose: 3000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "light",
+          transition: Slide,
+        });
+      }
+    } catch (error) {
+      console.error(`Error :`, error);
+    }
+  };
 
+  const handlePurches = () => {
+    Products.length > 0
+      ? (toast.success("Purches is successfully!", {
+          position: "top-right",
+          autoClose: 3000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "light",
+          transition: Slide,
+        }),
+        navigate("/order"))
+      : toast.error("cart is  empty", {
+          position: "top-right",
+          autoClose: 3000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "light",
+          transition: Slide,
+        });
+  };
   return (
     <>
       {error ?? <p className="error">{error}</p>}
@@ -111,7 +179,7 @@ export default function Cart() {
           <div className={`row ${style.cartContent}`}>
             <div className={`col-lg-9 col-md-12 ${style.tableWrapper}`}>
               <table className="">
-                <thead className="text-muted">
+                <thead className="text-muted ">
                   <tr className="small text-uppercase">
                     <th scope="col" className="text-left">
                       Product
@@ -205,31 +273,78 @@ export default function Cart() {
                       </tr>
                     ))
                   ) : (
-                    <h2>empty Products</h2>
+                    <tr>
+                      <td>
+                        <h2> empty product</h2>
+                      </td>
+                    </tr>
                   )}
                 </tbody>
               </table>
+              <div className="d-flex justify-content-end">
+                <button className={style.btnClear} onClick={handleClear}>
+                  Clear Cart
+                </button>
+              </div>
             </div>
             <aside className="col-lg-3 col-md-12">
               <div className="card">
-                <div className="card-body">
-                  <div className="dlist-align">
-                    <h3>Total price:</h3>
-                    <span className="text-right">{}</span>
+                <div className="card-body d-flex flex-column  gap-3">
+                  <div className={style.Total}>
+                    <span>SubTotal:</span>
+                    <span className="text-right">
+                      {Products.length > 0 ? (
+                        Products.reduce(
+                          (total, product) =>
+                            total + product.details.price * product.quantity,
+                          0
+                        ) + "$"
+                      ) : (
+                        <span>0$</span>
+                      )}
+                    </span>
                   </div>
-                  <div className="dlist-align">
-                    <h3>Discount:</h3>
-                    <span className="text-right"> 658</span>
+                  <div className={style.Total}>
+                    <span>Discount:</span>
+                    <span className="text-right ">
+                      {Products.length > 0 ? (
+                        Products.reduce(
+                          (total, product) =>
+                            total + product.details.discount * product.quantity,
+                          0
+                        ) + "$"
+                      ) : (
+                        <span>0$</span>
+                      )}
+                    </span>
                   </div>
-                  <div className="dlist-align">
-                    <h3>Total:</h3>
-                    <span className="text-right  h5"></span>
+                  <div className={style.Total}>
+                    <span>Total Price:</span>
+                    <span className="text-right">
+                      {Products.length > 0 ? (
+                        Products.reduce(
+                          (total, product) =>
+                            total +
+                            product.details.price * product.quantity -
+                            product.details.discount * product.quantity,
+                          0
+                        ) + "$"
+                      ) : (
+                        <span>0$</span>
+                      )}
+                    </span>
                   </div>
                   <hr />
                   <div className={style.btnCart}>
-                    <button className="btn btn-primary float-md-right">
-                      Make Purchase <i className="fa fa-chevron-right" />
+                    <button
+                      type="submit"
+                      className="btn btn-primary"
+                      onClick={handlePurches}
+                      disabled={loader ? "disabled" : null}
+                    >
+                      {!loader ? "Make Purchase" : <Loader />}
                     </button>
+
                     <NavLink to="/products" className="btn btn-secondary">
                       <i className="fa fa-chevron-left" /> Continue shopping
                     </NavLink>

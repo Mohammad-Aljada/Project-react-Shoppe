@@ -1,0 +1,126 @@
+.profile {
+  padding-top: 140px;
+  padding-bottom: 50px;
+}
+
+.infouserContent {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+  padding: 20px;
+  background-color: white;
+  border-radius: 5px;
+  box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.2);
+}
+.userImage {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+}
+.infouserInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 10px;
+}
+.infouserInfo h3 {
+  font-size: 20px;
+  font-weight: 600;
+}
+.infouserInfo p {
+  font-size: 16px;
+  font-weight: 600;
+}
+.orderpro {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 5px;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+.proTitle {
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.contactContent {
+  padding: 20px;
+  background-color: white;
+  border-radius: 5px;
+  box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.2);
+}
+.phone,
+.email {
+  gap: 10px;
+}
+.phoneTitle,
+.emailTitle {
+  font-size: 16px;
+  font-weight: 600;
+  padding: 10px;
+  margin-top: 8px;
+}
+.linkEmail,
+.linkPhone {
+  font-size: 18px;
+  font-weight: 600;
+  color: rgb(66, 66, 169);
+  text-decoration: underline;
+}
+.phoneImage,
+.emailImage {
+  width: 20px;
+  height: 20px;
+}
+
+@media screen and (max-width: 575.98px) {
+  .profile {
+    padding-top: 100px;
+  }
+
+  .infouserContent {
+    justify-content: center;
+    padding: 10px;
+  }
+  .userImage {
+    width: 60px;
+    height: 60px;
+  }
+  .infouserInfo h3 {
+    font-size: 16px;
+  }
+  .infouserInfo p {
+    font-size: 14px;
+  }
+  .infouserInfo {
+    justify-content: center;
+    align-items: center;
+  }
+  .title {
+    font-size: 18px;
+  }
+  .contactContent {
+    padding: 10px;
+  }
+  .phone,
+  .email {
+    flex-direction: column;
+    gap: 10px;
+  }
+  .linkEmail,
+  .linkPhone {
+    font-size: 12px;
+  }
+  .phoneTitle,
+  .emailTitle {
+    font-size: 14px;
+  }
+  .phoneImage,
+  .emailImage {
+    width: 15px;
+    height: 15px;
+  }
+}

@@ -9,7 +9,7 @@ export default function PageNotFound() {
             className={`${style.errorContent} col-lg-12 col-md-12 col-sm-12`}
           >
             <div className={style.errorImage}>
-              <img src="errorPage.jpg" alt="Error Image" />
+              <img src="/errorPage.jpg" alt="Error Image" />
             </div>
             <div className={style.errorInfo}>
               <h1>404</h1>

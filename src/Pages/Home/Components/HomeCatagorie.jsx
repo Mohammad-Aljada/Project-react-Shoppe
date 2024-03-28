@@ -39,6 +39,7 @@ export default function HomeCatagorie() {
     getCatagories();
     
     return ()=>{controller.abort();};
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [controller]);
 
   if (loader) {
@@ -74,7 +75,7 @@ export default function HomeCatagorie() {
                       <img
                         className={style.circularImage}
                         src={catagory.image.secure_url}
-                        alt="slide image"
+                        alt={catagory.name}
                       />
                       <span className={style.catTitle}>{catagory.name}</span>
                     </NavLink>

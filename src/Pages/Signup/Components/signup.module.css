@@ -1,5 +1,6 @@
 .Signup {
   padding-top: 120px;
+  padding-bottom: 50px;
 }
 .signupContent {
   display: flex;
@@ -88,6 +89,11 @@
 }
 .signupFinal form input{
   border-radius: 6px;
+  border: none;
+  padding: 8px;
+  font-size: 16px;
+  font-weight: 600;
+  box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.2);
 }
 
 @media screen and (max-width: 575.98px) {
@@ -105,7 +111,7 @@
     font-weight: 600;
   }
   .signupFinal form input {
-    font-size: 14px;
+    font-size: 12px;
     width: 100%;
   }
   .signupFinal h1 {
@@ -123,6 +129,9 @@
     font-size: 16px;
     font-weight: 600;
   }
+  .signupFinal form input {
+    font-size: 14px;
+  }
 }
 
 /*  `lg` applies to medium devices (tablets, less than 992px) */
@@ -134,4 +143,5 @@
   .signupFinal {
     width: 100%;
   }
+
 }
