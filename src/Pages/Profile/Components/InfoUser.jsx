@@ -28,6 +28,7 @@ export default function InfoUser() {
 
   useEffect(() => {
     getUsers();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   if (loader) {

@@ -1,39 +1,20 @@
-import { useEffect, useState } from "react";
 import style from "./cart.module.css";
 import axios from "axios";
 import Loader from "../../../Components/Loader/Loader";
 import { NavLink, useNavigate } from "react-router-dom";
 import { Slide, toast } from "react-toastify";
 import { useCart } from "../../../CustomHook/UseCart";
+import useGetRequest from "../../../CustomHook/useGetRequest";
 
 export default function Cart() {
   const navigate = useNavigate();
-  const [Products, setProducts] = useState({});
-  const [loader, setLoader] = useState(true);
-  const [error, setError] = useState("");
   const token = localStorage.getItem("userToken");
-  const [actions, setAction] = useState(-1);
-  const [cart, setCart] = useCart();
+  const { cart, setCart } = useCart();
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  const getProducts = async () => {
-    try {
-      const { data } = await axios.get(`${import.meta.env.VITE_API_URL}/cart`, {
-        headers: {
-          Authorization: `Tariq__${token}`,
-        },
-      });
-      setProducts(data.products);
-      setError("");
-    } catch (error) {
-      setError("error loading products data");
-    } finally {
-      setLoader(false);
-    }
-  };
-
-  useEffect(() => {
-    getProducts();
-  }, [actions, cart]);
+  const { Products, error, loader , actions ,  setAction } = useGetRequest(
+    `${import.meta.env.VITE_API_URL}/cart`,
+    token
+  );
 
   if (loader) {
     return <Loader />;
@@ -53,7 +34,7 @@ export default function Cart() {
             }
           );
           setAction(actions + 1);
-          
+
           break;
         case "decrease":
           await axios.patch(

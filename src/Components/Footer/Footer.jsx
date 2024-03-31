@@ -23,15 +23,24 @@ export default function Footer() {
                 </p>
               </div>
               <div className="d-flex gap-2 ">
-                <NavLink to="#" className={style.social}>
+                <a
+                  href="https://www.facebook.com/mohammadaljada123"
+                  className={style.social}
+                >
                   <img src="/facebook.svg" alt="Facebook logo" />
-                </NavLink>
-                <NavLink to="#" className={style.social}>
+                </a>
+                <a
+                  href="https://www.instagram.com/mohammadaljadaa"
+                  className={style.social}
+                >
                   <img src="/instgram.svg" alt="Instgarm logo" />
-                </NavLink>
-                <NavLink to="#" className={style.social}>
+                </a>
+                <a
+                  href="https://www.linkedin.com/in/mohammad-aljada"
+                  className={style.social}
+                >
                   <img src="/linkedin.svg" alt="linkedin logo" />
-                </NavLink>
+                </a>
               </div>
             </div>
             <div

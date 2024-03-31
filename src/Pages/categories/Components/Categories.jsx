@@ -1,30 +1,11 @@
-import axios from "axios";
-import { useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
 import Loader from "../../../Components/Loader/Loader";
 import style from "./categories.module.css";
+import UseResource from "../../../CustomHook/UseResource";
 export default function Catagories() {
-  const [catagories, setCatagories] = useState([]);
-  const [loader, setLoader] = useState(true);
-  const [error, setError] = useState("");
-
-  const getCatagories = async () => {
-    try {
-      const { data } = await axios.get(
-        `${import.meta.env.VITE_API_URL}/categories/active?page=1&limit=9`
-      );
-      setCatagories(data.categories);
-      setError("");
-    } catch (error) {
-      setError("error loading categories data");
-    } finally {
-      setLoader(false);
-    }
-  };
-
-  useEffect(() => {
-    getCatagories();
-  }, []);
+  const { catagories, error, loader } = UseResource(
+    `${import.meta.env.VITE_API_URL}/categories/active?page=1&limit=9`
+  );
 
   if (loader) {
     return <Loader />;

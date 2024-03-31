@@ -50,7 +50,6 @@
   background-color: var(--primary-color);
   justify-content: center;
   color: white;
-  align-self: flex-start;
 }
 .cart,
 .comment {
@@ -65,7 +64,7 @@
 .review {
   padding-top: 50px;
 }
-.reviewForm{
+.reviewForm {
   display: flex;
   gap: 20px;
   align-items: center;
@@ -73,9 +72,8 @@
   padding: 14px;
   flex-wrap: wrap;
   border-radius: 6px;
-  
 }
-.btnReview{
+.btnReview {
   display: flex;
   gap: 10px;
   align-items: center;
@@ -94,17 +92,17 @@
   font-size: 16px;
   font-weight: 600;
 }
-.reviewDetiles{
+.reviewDetiles {
   display: flex;
   flex-direction: column;
-  gap:20px;
+  gap: 20px;
   padding-top: 30px;
 }
 
-.reviewTestimonial{
+.reviewTestimonial {
   display: flex;
   flex-direction: column;
-  gap:10px;
+  gap: 10px;
   padding: 14px;
   border-radius: 6px;
   background-color: #f1efec;
@@ -142,13 +140,13 @@
     width: 50%;
     font-size: 14px;
   }
-  .reviewTestimonial h3{
-  font-size: 16px;
-  font-weight: 600;
+  .reviewTestimonial h3 {
+    font-size: 16px;
+    font-weight: 600;
   }
-  .reviewTestimonial span{
+  .reviewTestimonial span {
     font-size: 14px;
-    }
+  }
 }
 /*  `lg` applies to medium devices (tablets, less than 992px) */
 @media screen and (max-width: 767.98px) {

@@ -7,7 +7,7 @@ import { useCart } from "../../CustomHook/UseCart";
 
 export default function Navbar() {
   const { userName, setUserToken, setUserName } = useContext(UserContext);
-  const cart = useCart();
+  const { cart } = useCart();
 
   const Logout = () => {
     localStorage.removeItem("userToken");

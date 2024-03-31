@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import style from "./order.module.css";
 import styles from "../../Cart/Components/cart.module.css";
 import Loader from "../../../Components/Loader/Loader";
@@ -6,14 +6,10 @@ import axios from "axios";
 import { object, string } from "yup";
 import { Slide, toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
-import { useCart } from "../../../CustomHook/UseCart";
+import useGetRequest from "../../../CustomHook/useGetRequest";
 
 export default function Order() {
   const navigate = useNavigate();
-  const [cart, setCart] = useCart();
-  const [Products, setProducts] = useState({});
-  const [loader, setLoader] = useState(true);
-  const [error, setError] = useState("");
   const [errors, setErrors] = useState([]);
   const token = localStorage.getItem("userToken");
   const [user, setUser] = useState({
@@ -22,21 +18,10 @@ export default function Order() {
     phone: "",
   });
 
-  const getProducts = async () => {
-    try {
-      const { data } = await axios.get(`${import.meta.env.VITE_API_URL}/cart`, {
-        headers: {
-          Authorization: `Tariq__${token}`,
-        },
-      });
-      setProducts(data.products);
-      setError("");
-    } catch (error) {
-      setError("error loading products data");
-    } finally {
-      setLoader(false);
-    }
-  };
+  const { Products, error, loader, setLoader , setCart } = useGetRequest(
+    `${import.meta.env.VITE_API_URL}/cart`,
+    token
+  );
   const handleChange = (e) => {
     const { name, value } = e.target;
     setUser({
@@ -123,10 +108,6 @@ export default function Order() {
     }
   };
 
-  useEffect(() => {
-    getProducts();
-  }, [cart]);
-
   if (loader) {
     return <Loader />;
   }
@@ -154,6 +135,7 @@ export default function Order() {
                     <th scope="col" className="text-center" width={120}>
                       Subtotal
                     </th>
+                   
                   </tr>
                 </thead>
                 <tbody>

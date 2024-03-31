@@ -1,11 +1,8 @@
 import { Pagination } from "react-bootstrap";
 
 // eslint-disable-next-line react/prop-types
-export default function PaginationComp({
-  currentPage,
-  totalPages,
-  onPageChange,
-}) {
+export default function PaginationComp({currentPage, totalPages,onPageChange,}){
+  
   const pageItems = [];
   for (let i = 1; i <= totalPages; i++) {
     pageItems.push(
@@ -18,7 +15,6 @@ export default function PaginationComp({
       </Pagination.Item>
     );
   }
-  console.log(pageItems);
   return (
     <>
       <div className="container d-flex justify-content-center">

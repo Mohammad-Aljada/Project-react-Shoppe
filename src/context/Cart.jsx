@@ -24,11 +24,8 @@ const CartContextProvider = ({ children }) => {
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  
-
   return (
-
-    <CartContext.Provider value={[cart,  setCart]}>
+    <CartContext.Provider value={{cart,  setCart}}>
       {children}
     </CartContext.Provider>
   );

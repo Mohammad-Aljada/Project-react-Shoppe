@@ -109,7 +109,7 @@ export default function ProductsReviews({ product, id }) {
               setValue(event.target.value);
             }}
           />
-          <button type="submit"  className={style.btnReview}>
+          <button type="submit" className={style.btnReview}>
             <svg
               className={style.comment}
               xmlns="http://www.w3.org/2000/svg"
@@ -127,24 +127,25 @@ export default function ProductsReviews({ product, id }) {
       <div className={` col-lg-9 col-md-12 ${style.reviewDetiles}`}>
         {
           // eslint-disable-next-line react/prop-types
-          product.reviews.map(review=>
-            (
-              <div className={style.reviewTestimonial} key={review.id}>
+          product.reviews &&
+            // eslint-disable-next-line react/prop-types
+            product.reviews.map((review) => (
+              <div className={style.reviewTestimonial} key={review._id}>
                 <div>
                   <h3>{review.createdBy.userName}</h3>
-              <span>{review.createdAt}</span>
+                  <span>{review.createdAt}</span>
                 </div>
-              <p>{review.comment}</p>
-              <Rating
-            name="rating"
-            value={review.rating}
-            onChange={(event) => {
-              setValue(event.target.value);
-            }}
-          />
+                <p>{review.comment}</p>
+                <Rating
+                  name="rating"
+                  value={review.rating}
+                  onChange={(event) => {
+                    setValue(event.target.value);
+                  }}
+                />
               </div>
-            )
-        )}
+            ))
+        }
       </div>
     </>
   );

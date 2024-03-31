@@ -21,7 +21,6 @@ export default function UserOrders() {
       );
       setOrders(data.orders);
       setError("");
-      console.log(data.orders);
     } catch (error) {
       setError("error loading Order data");
     } finally {
@@ -31,11 +30,34 @@ export default function UserOrders() {
 
   useEffect(() => {
     getOrder();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   if (loader) {
     return <Loader />;
   }
+
+  const cancelOrder = async (id) => {
+    try {
+      await axios.patch(
+        `${import.meta.env.VITE_API_URL}/order/cancel/${id}`,
+        {},
+        {
+          headers: {
+            Authorization: `Tariq__${token}`,
+          },
+        }
+      );
+      setOrders((prevOrders) =>
+        prevOrders.map((order) =>
+          order._id === id ? { ...order, status: "cancelled" } : order
+        )
+      );
+    } catch (error) {
+      console.error("Error cancelling order:", error);
+      setError("Error cancelling order");
+    }
+  };
   return (
     <>
       {error ?? <p className="error">{error}</p>}
@@ -53,6 +75,9 @@ export default function UserOrders() {
                 </th>
                 <th scope="col" className="text-center" width={120}>
                   status
+                </th>
+                <th scope="col" className="text-center" width={120}>
+                  Action
                 </th>
               </tr>
             </thead>
@@ -87,6 +112,14 @@ export default function UserOrders() {
                     </td>
                     <td className="text-center">
                       <span>{order.status}</span>
+                    </td>
+                    <td className="text-center btn btn-danger">
+                      <button
+                        disabled={order.status !== "pending"}
+                        onClick={() => cancelOrder(order._id)}
+                      >
+                        Cancel
+                      </button>
                     </td>
                   </tr>
                 ))
