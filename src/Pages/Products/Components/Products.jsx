@@ -1,23 +1,45 @@
 import { NavLink } from "react-router-dom";
 import style from "./products.module.css";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Loader from "../../../Components/Loader/Loader";
 import PaginationComp from "../../../Components/Pagination/PaginationComp";
 import Filter from "../../../Components/Filter/Filter";
 import { Rating } from "@mui/material";
-import UseResource from "../../../CustomHook/UseResource";
 import AddToCartButton from "../../../Components/AddToCartButton/AddToCartButton";
+import axios from "axios";
+import { useCart } from "../../../CustomHook/UseCart";
 
 export default function Products() {
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState(0);
   const limit = 4;
+  const [Products, setProducts] = useState([]);
+  const [value, setValue] = useState(0);
+  const { cart } = useCart();
+  const [loader, setLoader] = useState(true);
+  const [error, setError] = useState("");
 
-  const { Products, error, loader, setProducts, setValue } = UseResource(
-    `${
-      import.meta.env.VITE_API_URL
-    }/products?page=${currentPage}&limit=${limit}`
-  );
+  const getProducts = async () => {
+    try {
+      const { data } = await axios.get(
+        `${
+          import.meta.env.VITE_API_URL
+        }/products?page=${currentPage}&limit=${limit}`
+      );
+      setProducts(data.products);
+      setError("");
+      const numberofpages = data.total / limit;
+      setTotalPages(numberofpages);
+    } catch (error) {
+      setError("error loading products data");
+    } finally {
+      setLoader(false);
+    }
+  };
+
+  useEffect(() => {
+    getProducts();
+  }, [cart, value]);
   const handlePageChange = (pageNumber) => {
     setCurrentPage(pageNumber);
   };
