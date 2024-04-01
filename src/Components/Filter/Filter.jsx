@@ -1,5 +1,5 @@
 import { NavLink } from "react-router-dom";
-import styles from "./filter.module.css";
+import styles from "../Sidbar/Sidebar.module.css";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import Loader from "../Loader/Loader";
@@ -60,7 +60,7 @@ export default function Filter({ setProducts, setTotalpage, currentpage , setCur
       {error ?? <p className="error">{error}</p>}
       <aside className={styles.sidebar}>
         <button
-          className="btn btn-secondary"
+          className={`btn btn-secondary ${styles.btnSidbar}`}
           type="button"
           data-bs-toggle="offcanvas"
           data-bs-target="#offcanvasRight"

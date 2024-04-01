@@ -5,7 +5,7 @@ export default function Sidebar() {
     <>
       <aside className={style.sidebar}>
         <button
-          className="btn btn-secondary"
+          className={`btn btn-secondary ${style.btnSidbar}`}
           type="button"
           data-bs-toggle="offcanvas"
           data-bs-target="#offcanvasRight"

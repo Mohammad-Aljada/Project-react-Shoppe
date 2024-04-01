@@ -17,7 +17,8 @@ import {createContext, useEffect, useState } from "react"
        };
         useEffect(()=>{
         getUserData()
-        }, [getUserData, userToken]);
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+        }, [userToken]);
         
         return <UserContext.Provider value={{userName , setUserToken , setUserName}}>
             {children}
