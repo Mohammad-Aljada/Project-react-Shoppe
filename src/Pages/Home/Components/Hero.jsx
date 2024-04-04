@@ -30,7 +30,6 @@ export default function Hero() {
                   alt="Home photo"
                   style={{ display: loader ? "block" : "none" }}
                   onLoad={handleImageLoad}
-                  loading="lazy"
                 />
               </div>
               <div className={style.heroContent}>

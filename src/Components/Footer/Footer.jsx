@@ -13,7 +13,9 @@ export default function Footer() {
             <div className={style.logoContainer}>
               <img className={style.footerLogo} src="/logo.svg" alt="logo" />
             </div>
-            <div className={`d-flex flex-column gap-2 ${style.footerText}`}>
+            <div
+              className={`d-flex flex-column gap-2 align-items-center ${style.footerText}`}
+            >
               <h3>Why People Like Us!</h3>
               <p>
                 Typesetting, remaining essentially unchanged. It was popularised
