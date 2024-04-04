@@ -21,7 +21,7 @@ export default function Navbar() {
           <nav className="navbar navbar-expand-lg bg-light shadow p-3 mb-5 bg-body rounded ">
             <div className="container-fluid nav">
               <NavLink className="navbar-brand " to="/">
-                <img className="logo" src="/logo.svg" alt="Shoppe Logo" />
+                <img loading="lazy" className="logo" src="/logo.svg" alt="Shoppe Logo" />
               </NavLink>
               <button
                 className="navbar-toggler"

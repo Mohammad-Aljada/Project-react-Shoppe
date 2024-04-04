@@ -2,10 +2,7 @@
   padding-top: 120px;
   padding-bottom: 50px;
 }
-.title {
-  text-align: center;
-  padding-bottom: 30px;
-}
+
 .category {
   display: flex !important;
   gap: 30px;

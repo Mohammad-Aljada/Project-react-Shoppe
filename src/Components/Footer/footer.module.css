@@ -1,11 +1,19 @@
-footer {
-  background-color: #efebe2;
+.footerContainer {
   padding: 20px;
+  background-color: #f8f9fa;
+  border-top: 1px solid #dee2e6;
 }
-.footerlogo {
-  width: 80px;
-  height: 60px;
+
+.footerLeft {
+  display: flex;
+  flex-direction: column;
 }
+
+.footerLogo {
+  width: 80px; /* Adjust size as needed */
+  height: auto;
+}
+
 .footerText h3 {
   font-size: 18px;
   font-weight: 800;
@@ -14,6 +22,7 @@ footer {
   font-size: 16px;
   color: var(--secondary-color);
 }
+
 .social {
   border: 1px solid var(--secondary-color) !important;
   display: flex;
@@ -30,14 +39,39 @@ footer {
   border: 1px solid white;
   box-sizing: content-box;
 }
-.linkTitle {
-  font-size: 20px;
-  font-weight: 800;
+
+.footerRight {
+  display: flex;
+  justify-content: space-around;
 }
+
+.footerRight .linkTitle {
+  font-size: 18px;
+  color: #343a40;
+}
+
+.footerRight .link {
+  margin-bottom: 8px;
+}
+
+.linkTitle {
+  color: #343a40;
+}
+
 .link {
-  font-size: 16px;
-  font-weight: 600;
-  color: var(--secondary-color);
+  color: #6c757d;
+}
+
+.link:hover {
+  color: #212529;
+}
+.linkEmail {
+  font-size: 14px;
+}
+
+.copyright {
+  margin-top: 20px;
+  color: #6c757d;
 }
 .linkcontact {
   font-size: 14px;
@@ -76,9 +110,8 @@ footer {
     width: 15px;
     height: 15px;
   }
-  .footerlogo {
+  .footerLogo {
     width: 50px;
-    height: 40px;
   }
   .footerText h3 {
     font-size: 14px;
@@ -104,6 +137,21 @@ footer {
   }
   .linkcontact {
     font-size: 12px;
+  }
+  .footerLogo {
+    width: 70px;
+  }
+  .footerText h3 {
+    font-size: 16px;
+    font-weight: 600;
+  }
+  .footerText p {
+    font-size: 14px;
+  }
+  .social img {
+    padding: 8px;
+    width: 15px;
+    height: 15px;
   }
 }
 @media screen and (max-width: 991.98px) {

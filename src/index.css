@@ -1,7 +1,6 @@
-@import url("https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap");
 body {
-  font-family: "DM Sans", sans-serif;
-    background-color: #e2ddd5; 
+  font-family: "open sans", sans-serif;
+  background-color: #e2ddd5;
 }
 :root {
   --primary-color: #a18a68;
@@ -31,13 +30,26 @@ ul {
   font-size: 25px !important;
   color: black;
 }
-.card-link+.card-link{
+.card-link + .card-link {
   margin-left: 0;
 }
-button{
+button {
   border: none;
   background-color: transparent;
 }
 
+footer {
+  .copyright {
+    margin-top: 20px;
+    padding: 12px;
+    background-color: #96866f;
+  }
+}
 
- 
+@media screen and (max-width: 575.98px) {
+  footer {
+    .copyright {
+      font-size: 10px;
+    }
+  }
+}

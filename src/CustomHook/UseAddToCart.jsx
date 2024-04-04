@@ -2,8 +2,10 @@ import axios from "axios";
 import { Slide, toast } from "react-toastify";
 import { useCart } from "./UseCart";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 export default function UseAddToCart() {
+  const navigate = useNavigate();
   const { cart, setCart } = useCart();
   const [loader, setLoader] = useState(false);
   const token = localStorage.getItem("userToken");
@@ -21,6 +23,7 @@ export default function UseAddToCart() {
         theme: "dark",
         transition: Slide,
       });
+      navigate("/signin");
     }
     try {
       const { data } = await axios.post(

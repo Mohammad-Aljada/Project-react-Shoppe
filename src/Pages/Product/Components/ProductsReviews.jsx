@@ -3,9 +3,11 @@ import style from "./product.module.css";
 import axios from "axios";
 import { useState } from "react";
 import { Rating } from "@mui/material";
+import { useNavigate } from "react-router-dom";
 
 // eslint-disable-next-line react/prop-types
 export default function ProductsReviews({ product, id }) {
+  const navigate = useNavigate();
   const [value, setValue] = useState(0);
   const [comment, setComment] = useState(""); // State to hold the comment
   const handleChange = (e) => {
@@ -35,6 +37,7 @@ export default function ProductsReviews({ product, id }) {
         theme: "dark",
         transition: Slide,
       });
+      navigate("/signin");
     }
 
     try {
